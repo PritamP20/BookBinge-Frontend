@@ -10,7 +10,8 @@ const Document = () => {
 
   return (
     <div className='d-flex justify-content-center align-items-center'>
-      <embed className='d-flex justify-content-center align-items-center' src={ClgNotesUrl} type="application/pdf" width="100%" height="900px" />
+      {/* <embed className='d-flex justify-content-center align-items-center' src={ClgNotesUrl} type="application/pdf" width="100%" height="900px" /> */}
+      <iframe className="w-100 d-flex justify-content-center align-items-center" height="900px" src={ClgNotesUrl} frameborder="0"></iframe>
     </div>
   )
 }
