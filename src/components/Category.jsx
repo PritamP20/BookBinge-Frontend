@@ -17,7 +17,10 @@ const Category = () => {
 
   const handleCategory = async (e, cate)=>{
     e.preventDefault()
-    const data = await axios.get(`http://localhost:8081/books/category/${cate}`)
+    // const data = await axios.get(`http://localhost:8081/books/category/${cate}`)
+
+    const data = await axios.get(`https://bookbinge-backend.onrender.com/books/category/${cate}`)
+
     console.log(data.data)
     navigate('/category', { state: { books: data.data, category: cate } });
   }
