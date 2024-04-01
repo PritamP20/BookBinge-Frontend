@@ -157,7 +157,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Dashboard/>}/>
         <Route path='/' element={<Category/>} />
-        <Route path='/genre/:genre' element={<Genre />} />
+        {/* <Route path='/genre/:genre' element={<Genre />} /> */}
         {/* <Route path='/seller' element={<Seller setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/> */}
         <Route path='/seller' element={<SellerDub setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/>
         <Route path='/view' element={<Viwe/>}/>
