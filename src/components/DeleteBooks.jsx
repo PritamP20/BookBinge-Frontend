@@ -9,7 +9,11 @@ const DeleteBooks = ({allBooks, setAllBooks}) => {
   
 
   const handleDelete = async (id)=>{
-    const del = await axios.delete(`http://localhost:8081/books/${id}`)
+
+    // const del = await axios.delete(`http://localhost:8081/books/${id}`)
+
+    const del = await axios.delete(`https://bookbinge-backend.onrender.com/books/${id}`)
+
     console.log(del)
     if(allBooks.filter(detail=> detail._id==id)!=[]){
       setAllBooks(allBooks.filter(detail=> detail._id!==id))

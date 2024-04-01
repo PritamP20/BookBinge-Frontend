@@ -30,7 +30,11 @@ function App() {
   const [url, setUrl] = useState()
 
   const getAllbooks = async ()=>{
-    const data = await axios.get("http://localhost:8081/books")
+
+    // const data = await axios.get("http://localhost:8081/books")
+
+    const data = await axios.get("https://bookbinge-backend.onrender.com/books")
+
     setAllBooks(data.data)
     // console.log(data.data)
   }
@@ -75,7 +79,11 @@ function App() {
       data[0].url = url
       // console.log("object")
       // console.log(id)
-      const update = await axios.patch(`http://localhost:8081/books/update/${id}`, {'url': data[0].url})
+
+      // const update = await axios.patch(`http://localhost:8081/books/update/${id}`, {'url': data[0].url})
+
+      const update = await axios.patch(`https://bookbinge-backend.onrender.com/books/update/${id}`, {'url': data[0].url})
+
       // console.log(update)
     }
   }
@@ -87,7 +95,11 @@ function App() {
       data[0].ClgNotes = url
       console.log("object")
       console.log(id)
-      const update = await axios.patch(`http://localhost:8081/books/update/${id}`, {'ClgNotes': data[0].ClgNotes})
+
+      // const update = await axios.patch(`http://localhost:8081/books/update/${id}`, {'ClgNotes': data[0].ClgNotes})
+
+      const update = await axios.patch(`https://bookbinge-backend.onrender.com/books/update/${id}`, {'ClgNotes': data[0].ClgNotes})
+
       console.log(update)
     }
   }

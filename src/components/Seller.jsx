@@ -49,7 +49,11 @@ const Seller = ({setAllBooks, allBooks, setUrl, url}) => {
 
 
   const addBooks = async (book)=>{
-    const data = await axios.post("http://localhost:8081/books",book).catch((err)=>console.log(err))
+
+    // const data = await axios.post("http://localhost:8081/books",book).catch((err)=>console.log(err))
+
+    const data = await axios.post("https://bookbinge-backend.onrender.com/books",book).catch((err)=>console.log(err))
+
     console.log(data)
   }
 
