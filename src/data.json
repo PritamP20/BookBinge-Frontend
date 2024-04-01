@@ -1,0 +1,15 @@
+{
+    "books": [
+        {
+            "id":7,
+            "name":"14th Dealdy sin",
+            "by":"pritam",
+            "originalPrice":499,
+            "disPrice":250,
+            "url": "https://kitabay.com/cdn/shop/products/db28f2558c458f85f56b2886e1908ffd_3a5a354f-b335-44c3-9ddb-f65a1d75eab2.jpg?crop=center&height=400&v=1710917345&width=250",
+            "detail":"With San Francisco under siege and every cop a suspect, the Women's Murder Club must risk their lives to save the city-and each other. With a beautiful baby daughter and a devoted husband, Detective Lindsay Boxer can safely say that her life has never been better.",
+            "colour":"#78716c",
+            "category":"fiction"
+        }
+    ]
+}
