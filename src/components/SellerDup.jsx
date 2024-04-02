@@ -11,7 +11,9 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [newBooks, setNewbooks] = useState(Data.books)
+  // const [newBooks, setNewbooks] = useState(Data.books)
+  let newBooks = Data.books;
+
   const category = [
     {
       cate: "Romance",
@@ -195,7 +197,16 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
       console.log(thumbnail)
       if (ClgNotesUpload) {
         if (thumbnail == "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg") {
-          setNewbooks({
+          // setNewbooks({
+          //   "id": allBooks.length+1+1,
+          //   "name":e.target.title.value,
+          //   "by": e.target.auther.value,
+          //   "url": thumbnailLength,
+          //   "category":cate,
+          //   "detail": e.target.about.value,
+          //   "ClgNotes": fileLength
+          // })
+          newBooks = {
             "id": allBooks.length+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
@@ -203,9 +214,18 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
             "category":cate,
             "detail": e.target.about.value,
             "ClgNotes": fileLength
-          })
+          }
         }else{
-          setNewbooks({
+          // setNewbooks({
+          //   "id": allBooks.length+1+1,
+          //   "name":e.target.title.value,
+          //   "by": e.target.auther.value,
+          //   "url": thumbnail,
+          //   "category":cate,
+          //   "detail": e.target.about.value,
+          //   "ClgNotes": fileLength
+          // })
+          newBooks = {
             "id": allBooks.length+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
@@ -213,30 +233,47 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
             "category":cate,
             "detail": e.target.about.value,
             "ClgNotes": fileLength
-          })
+          }
         }
       }else{
         if (thumbnail == "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg") {
-          setNewbooks({
+          // setNewbooks({
+          //   "id": allBooks.length+1+1,
+          //   "name":e.target.title.value,
+          //   "by": e.target.auther.value,
+          //   "url": thumbnailLength,
+          //   "category":cate,
+          //   "detail": e.target.about.value
+          // })
+          newBooks={
             "id": allBooks.length+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
             "url": thumbnailLength,
             "category":cate,
             "detail": e.target.about.value
-          })
+          }
         }else{
-          setNewbooks({
+          // setNewbooks({
+          //   "id": allBooks.length+1+1,
+          //   "name":e.target.title.value,
+          //   "by": e.target.auther.value,
+          //   "url": thumbnail,
+          //   "category":cate,
+          //   "detail": e.target.about.value
+          // })
+          newBooks = {
             "id": allBooks.length+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
             "url": thumbnail,
             "category":cate,
             "detail": e.target.about.value
-          })
+          }
         }
       }
       addBooks(newBooks)
+      // console.log(newBooks)
     },3000)
   }
 
