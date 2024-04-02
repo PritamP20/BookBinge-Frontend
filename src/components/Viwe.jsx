@@ -28,7 +28,7 @@ const Viwe = () => {
             <span className='fw-semibold fs-4'>Auther:</span> <span className='fs-4'>{books.by}</span>
         </div>
         <div className='fs-5'>
-        <span className='fw-semibold fs-4'>Price:  </span><span className='fs-4'>Rs. {books.disPrice}</span>
+        {/* <span className='fw-semibold fs-4'>Price:  </span><span className='fs-4'>Rs. {books.disPrice}</span> */}
         </div>
         <span><button type="button" class="btn fs-5 btn-info">Info</button></span>
       </div>

@@ -27,7 +27,7 @@ const DeleteBooks = ({allBooks, setAllBooks}) => {
   }
 
   return (
-    <div className="mt-5" style={{ fontFamily: "serif" }}>
+    <div className="mt-lg-5 mt-2" style={{ fontFamily: "serif" }}>
       <h1 className="d-flex justify-content-center">Books in Demand</h1>
       <div
         className="d-flex row"

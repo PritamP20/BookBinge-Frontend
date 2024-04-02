@@ -105,7 +105,7 @@ const Books = () => {
   }
 
   return (
-    <div className="mt-5" style={{ fontFamily: "serif" }}>
+    <div className="mt-lg-5" style={{ fontFamily: "serif" }}>
       <h1 className="d-flex justify-content-center">Books in Demand</h1>
       <div
         className="d-flex overflow-x-scroll"
@@ -113,11 +113,10 @@ const Books = () => {
       >
         {booksDetail.map((books) => (
           <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className="p-3 d-flex flex-column text-decoration-none text-black col-lg-2 col-sm-4 col-md-4 col-6">
-            <div
+            {/* <div
               className="d-flex flex-column  position-relative gap-1"
               style={{ fontSize: "80%" }}
             >
-              {/* <span className='' style={{zIndex:'-1'}}> <img style={{zIndex:'-1'}} className='' src="https://cdn.shopify.com/s/files/1/0302/6927/6291/files/03-_1.png?v=1702465051" alt="" /> fhd <span className='' style={{position:'relative', zIndex:'1'}}>Gently Used</span></span> */}
               <span className="">
                 {" "}
                 <div
@@ -146,17 +145,17 @@ const Books = () => {
                   <span className="p-2 fw-semibold">52%</span>{" "}
                 </div>{" "}
               </span>
-            </div>
+            </div> */}
             <div className="d-flex justify-content-center">
               <img className="col-12 p-2" src={books.url} />
             </div>
             <div className="d-flex p-2 flex-column justify-content-end align-content-end ">
               <span className="fw-semibold">{books.name}</span>
               <span>by: {books.by.slice(0,20)}</span>
-              <div>
+              {/* <div>
                 <span className="text-decoration-line-through">Rs. {books.orginalPrice}</span>
                 <span> Rs. {books.disPrice}</span>
-              </div>
+              </div> */}
             </div>
           </a>
         ))}
