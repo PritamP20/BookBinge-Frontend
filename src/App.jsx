@@ -143,8 +143,8 @@ function App() {
       <div>
         <Carosal></Carosal>
         <Category ></Category>
-        <Books></Books>
-        <Demand ></Demand>
+        <Books allBooks={allBooks}></Books>
+        {/* <Demand ></Demand> */}
         <Notes allBooks={allBooks}></Notes>
     </div>
     )

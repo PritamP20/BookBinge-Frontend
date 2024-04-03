@@ -15,7 +15,7 @@ const Login = () => {
   }
   return (
     <div className='cantainer d-flex justify-content-center align-items-center p-lg-5 m-lg-5 p-md-5 m-md-4 m-sm-5 p-sm-5 p-4 m-4'>
-      <div className='border border-1 border-black rounded-3 col-lg-5 col-md-8 col-sm-10 col-11'>
+      <div className='border border-1 border-black rounded-3 col-lg-5 col-md-8 col-sm-12 col-12'>
         
         <form action="" className='' onSubmit={(e)=>handleSubmit(e)}>
           <h3 className='d-flex justify-content-center'>Login</h3>
