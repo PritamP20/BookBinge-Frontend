@@ -1,0 +1,11 @@
+.document-view-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.document-view-frame {
+    width: 100%;
+    height: 100vh; /* Adjust height as per your preference */
+}

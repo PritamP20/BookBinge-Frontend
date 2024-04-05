@@ -21,7 +21,7 @@ import DeleteBooks from './components/DeleteBooks';
 import SellerDub from './components/SellerDup';
 import {storage} from './firebase'
 import { ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'firebase/storage'
-import Document from './components/Document';
+import DocumentView from './components/DocumentView';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -165,7 +165,7 @@ function App() {
         <Route path='/category' element={<BooksByCate/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/delete' element={<DeleteBooks allBooks={allBooks} setAllBooks={setAllBooks}/>}/>
-        <Route path='/document' element={<Document/>}/>
+        <Route path='/document' element={<DocumentView/>}/>
       </Routes>
       <Footer></Footer>
     </Router>
