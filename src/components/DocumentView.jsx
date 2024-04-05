@@ -27,18 +27,14 @@
 
 // export default DocumentView
 
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Document, Page } from 'react-pdf';
-import './DocumentView.css'
 
 const DocumentView = () => {
-
     const location = useLocation();
     const { ClgNotes } = location.state;
     const ClgNotesUrl = ClgNotes.ClgNotes;
-    console.log("clgurl: " + ClgNotesUrl);
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
@@ -48,11 +44,18 @@ const DocumentView = () => {
     }
 
     return (
-        <div className='document-view-container'>
-            <iframe className="document-view-frame" src={ClgNotesUrl} frameBorder="0"></iframe>
+        <div className='d-flex justify-content-center align-items-center'>
+            <Document
+                file={ClgNotesUrl}
+                onLoadSuccess={onDocumentLoadSuccess}
+            >
+                <Page pageNumber={pageNumber} />
+            </Document>
+            <p>Page {pageNumber} of {numPages}</p>
         </div>
     );
-};
+}
 
 export default DocumentView;
+
 
