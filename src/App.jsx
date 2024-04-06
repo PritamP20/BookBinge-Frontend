@@ -22,6 +22,7 @@ import SellerDub from './components/SellerDup';
 import {storage} from './firebase'
 import { ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'firebase/storage'
 import DocumentView from './components/DocumentView';
+import ReadPdf from './components/ReadPdf';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -166,6 +167,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/delete' element={<DeleteBooks allBooks={allBooks} setAllBooks={setAllBooks}/>}/>
         <Route path='/document' element={<DocumentView/>}/>
+        <Route path='/pdf' element={<ReadPdf/>}/>
       </Routes>
       <Footer></Footer>
     </Router>
