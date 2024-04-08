@@ -123,7 +123,7 @@ const Allbooks = ({allBooks}) => {
         style={{ scrollbarWidth: "none" }}
       >
         {allBooks.map((books) => (
-          <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className=" d-flex justify-content-center flex-column text-decoration-none text-black col-lg-2 col-sm-4 col-md-4 col-6">
+          <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className=" d-flex justify-content-center mb-3 flex-column text-decoration-none text-black col-lg-2 col-sm-4 col-md-4 col-6">
             {/* <div
               className="d-flex flex-column  position-relative gap-1"
               style={{ fontSize: "80%" }}
