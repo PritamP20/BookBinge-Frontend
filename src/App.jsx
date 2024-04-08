@@ -151,20 +151,25 @@ function App() {
     )
   }
 
+  let colourBg = 'white';
+  let textColor = 'black';
+
   return (
-    <div className=''>
+    <div className='' style={{backgroundColor: 'white'}}>
       <Router>
       <Navbar></Navbar>
       <Routes>
-        <Route path='/' element={<Dashboard/>}/>
-        <Route path='/' element={<Category/>} />
-        {/* <Route path='/genre/:genre' element={<Genre />} /> */}
-        {/* <Route path='/seller' element={<Seller setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/> */}
-        <Route path='/seller' element={<SellerDub setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/>
-        <Route path='/view' element={<Viwe/>}/>
-        <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/>
-        <Route path='/category' element={<BooksByCate/>}/>
-        <Route path='/login' element={<Login/>}/>
+        {/* <Route path='/' element={<Dashboard/>}/> */}
+        {/* <Route path='/' element={<Category/>} /> */}
+        {/* <Route path='/seller' element={<SellerDub setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/> */}
+        {/* <Route path='/view' element={<Viwe/>}/> */}
+        {/* <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/> */}
+
+        
+        <Route path='/' element={<Allbooks allBooks={allBooks}/>}/>
+
+        {/* <Route path='/category' element={<BooksByCate/>}/> */}
+        {/* <Route path='/login' element={<Login/>}/> */}
         <Route path='/delete' element={<DeleteBooks allBooks={allBooks} setAllBooks={setAllBooks}/>}/>
         <Route path='/document' element={<DocumentView/>}/>
         <Route path='/pdf' element={<ReadPdf/>}/>

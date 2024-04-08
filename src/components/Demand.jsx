@@ -5,7 +5,7 @@ const Demand = () => {
 
   return (
     <>
-    <hr />
+    <hr style={{color: 'white'}} />
     <div className='mt-lg-5' style={{fontFamily:'serif'}}>
         <h1 className='d-flex justify-content-center'>
             Books in Demand

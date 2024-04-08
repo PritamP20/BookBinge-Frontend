@@ -1,28 +1,39 @@
 import React from 'react'
+import { Carousel } from 'react-bootstrap'
+
 
 const Carosal = () => {
   return (
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://www.pbs.org/wgbh/americanexperience/media/filer_public_thumbnails/filer_public/f8/a1/f8a10d40-596f-4ad1-8db5-fa6edf834e55/idealbookshelfcp524-wgbhamericanexperience-bannedbooks-2000web.jpg__2000x1161_q85_crop_subsampling-2_upscale.jpg" class="d-block w-100" alt="..."/>
-    </div>
-    <div class="carousel-item">
-      <img src="https://www.booktrust.org.uk/globalassets/images/news-and-features/blogs-2023/december/movies-and-tv-shows-2024-16x9.jpg?w=1200&h=675&quality=70&anchor=middlecenter" class="d-block w-100" alt="..."/>
-    </div>
-    <div class="carousel-item">
-      <img src="https://www.booktrust.org.uk/globalassets/images/news-and-features/blogs-2022/12.-december/2023-tv-and-movies-books-16x9.jpg?w=1200&h=675&quality=70&anchor=middlecenter" class="d-block w-100" alt="..."/>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+    <Carousel className='mt-5'>
+      <Carousel.Item className='d-flex text-black justify-content-center align-items-center' interval={500} >
+        {/* <ExampleCarouselImage text="First slide" /> */}
+        {/* <img className='h-25' src="https://manybooks.net/sites/default/files/2018-07/bookdisplaysmall.jpg" alt="" /> */}
+        {/* <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption> */}
+        <div className='d-flex justify-content-center p-3 align-items-center' >
+          <div className='p-lg-5 m-lg-5 p-md-4 p-sm-2 m-md-3 m-sm-2'>
+            <h1 className='d-flex fs-3 text-center justify-content-center' style={{fontFamily: "Rubik"}}>FREE AND DISSCOUNTED BESTSELLERS</h1>
+            <p className='text-wrap fs-6 text-center'>Join 150,000+ fellow readers. Get free and disscounted bestsellers straight to your inbox with the BookBinge. <a href="">Sign Up Now</a> </p>
+          </div>
+        </div>
+      </Carousel.Item>
+      {/* <Carousel.Item interval={500}>
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item> */}
+    </Carousel>
   )
 }
 

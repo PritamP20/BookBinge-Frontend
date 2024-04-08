@@ -5,6 +5,7 @@ import { FaFacebook, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
 const Footer = () => {
   return (
     <div className='' style={{backgroundColor:"black", fontFamily:'serif'}}>
+      <hr style={{color: 'white'}} />
       <div className='container mt-5'>
           <div className='p-lg-3'>
             <div className='fs-3 d-flex text-white justify-content-center'>BookBinge</div>

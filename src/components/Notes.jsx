@@ -28,7 +28,7 @@ const Notes = ({allBooks}) => {
     <>
     {Notes.length !=0 ? 
       <>
-        <hr />
+        <hr style={{color: 'white'}} />
     <div className="mt-lg-5 mt-2" style={{ fontFamily: "serif" }}>
       <h1 className="d-flex justify-content-center">Books Related to Coding</h1>
       <div

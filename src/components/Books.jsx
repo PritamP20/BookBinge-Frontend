@@ -26,14 +26,16 @@ const Books = ({allBooks}) => {
   }
 
   return (
-    <div className="mt-lg-5" style={{ fontFamily: "serif" }}>
+    <>
+    {booksDetail.length != 0 ?
+      <div className="mt-lg-5" style={{ fontFamily: "serif" }}>
       <h1 className="d-flex justify-content-center">Books Available</h1>
       <div
         className="d-flex overflow-x-scroll"
         style={{ scrollbarWidth: "none" }}
       >
         {booksDetail.map((books) => (
-          <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className="p-3 d-flex flex-column text-decoration-none text-black col-lg-2 col-sm-4 col-md-4 col-6">
+          <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className="p-3 d-flex flex-column text-decoration-none text-white col-lg-2 col-sm-4 col-md-4 col-6">
             {/* <div
               className="d-flex flex-column  position-relative gap-1"
               style={{ fontSize: "80%" }}
@@ -82,6 +84,10 @@ const Books = ({allBooks}) => {
         ))}
       </div>
     </div>
+    :
+    <></>
+    }
+    </>
   );
 };
 

@@ -1,0 +1,18 @@
+.book-thumbnail {
+  /* Other styles for .book-thumbnail */
+  transition: box-shadow 0.3s ease; /* Add transition for smooth box-shadow effect */
+}
+
+.book-thumbnail:hover {
+  animation: uplift 1s ease-in-out infinite alternate; /* Apply the uplift animation */
+  box-shadow: 10px 20px 3px rgba(4, 3, 3, 0.3); /* Add box shadow effect on hover */
+}
+
+@keyframes uplift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}

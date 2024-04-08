@@ -1,0 +1,34 @@
+/* .underline-hover {
+    text-decoration: none;
+    color: black;
+    transition: unset 0.3s ease-out;
+}
+
+.underline-hover:hover {
+    text-decoration: underline;
+    transition: 0.3s ease;
+} */
+
+.underline-hover {
+    text-decoration: none; /* Remove underline by default */
+    color: black; /* Set the default color */
+    position: relative; 
+  }
+
+  /* Define the pseudo-element for the underline */
+  .underline-hover::after {
+    content: ''; /* Add content for the pseudo-element */
+    position: absolute; /* Set position to absolute */
+    bottom: 0; /* Align at the bottom */
+    left: 0; /* Start from the left */
+    width: 0; /* Initial width */
+    height: 3px; /* Height of the underline */
+    background-color: black; /* Color of the underline */
+    transition: width 0.3s ease-in-out; /* Add transition for width */
+    
+  }
+
+  /* Define the style when the text is hovered */
+  .underline-hover:hover::after {
+    width: 100%; /* Expand the width on hover */
+  }
