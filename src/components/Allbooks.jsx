@@ -117,7 +117,7 @@ const Allbooks = ({allBooks}) => {
 
   return (
     <div className="mt-lg-5 mt-2" style={{ fontFamily: "serif" }}>
-      <h1 className="d-flex justify-content-center">Physics Cycle Notes</h1>
+      <h1 className="d-flex justify-content-center">Chemistry Cycle Notes</h1>
       <div
         className="d-flex row"
         style={{ scrollbarWidth: "none" }}
