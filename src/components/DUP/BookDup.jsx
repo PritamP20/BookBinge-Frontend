@@ -1,10 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import Viwe from "./Viwe";
-import './Books.css'
 
-const Allbooks = ({allBooks}) => {
+// this is the cop of all books .jsx
+
+const BookDup = ({allBooks}) => {
   const navigate = useNavigate()
 
     console.log(allBooks)
@@ -116,58 +115,20 @@ const Allbooks = ({allBooks}) => {
   }
 
   return (
-    <div className="mt-lg-5 mt-2" style={{ fontFamily: "serif" }}>
-      <h1 className="d-flex justify-content-center">Chemistry Cycle Notes</h1>
+    <div className="" style={{ fontFamily: "serif" }}>
       <div
-        className="d-flex row"
-        style={{ scrollbarWidth: "none" }}
+        className="d-flex row p-lg-3 m-1 rounded-2" 
+        style={{ scrollbarWidth: "none", backgroundColor:'#DBF0FF' }}
       >
+
         {allBooks.map((books) => (
           <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className=" d-flex justify-content-center mb-3 flex-column text-decoration-none text-black col-lg-2 col-sm-4 col-md-4 col-6">
-            {/* <div
-              className="d-flex flex-column  position-relative gap-1"
-              style={{ fontSize: "80%" }}
-            >
-              <span className="">
-                {" "}
-                <div
-                  className="text-white"
-                  style={{
-                    backgroundImage:
-                      "url(https://cdn.shopify.com/s/files/1/0302/6927/6291/files/03-_1.png?v=1702465051)",
-                    width: "78px",
-                  }}
-                >
-                  {" "}
-                  <span className="p-2 fw-semibold">hello</span>{" "}
-                </div>{" "}
-              </span>
-              <span className="">
-                {" "}
-                <div
-                  className="text-white"
-                  style={{
-                    backgroundImage:
-                      "url(https://cdn.shopify.com/s/files/1/0302/6927/6291/files/03-_1.png?v=1702465051)",
-                    width: "78px",
-                  }}
-                >
-                  {" "}
-                  <span className="p-2 fw-semibold">52%</span>{" "}
-                </div>{" "}
-              </span>
-            </div> */}
             <div className="book-thumbnail m-auto border border-black rounded-1" >
               <div className="d-flex justify-content-center">
                 <img className="col-12 p-1"  src={books.url} />
               </div>
               <div className="details-container d-flex p-2 flex-column justify-content-end align-content-end ">
-                <span className="fw-semibold fs-5">{books.name}</span>
-                {/* <span>by: {books.by.slice(0,20)}</span> */}
-                {/* <div>
-                  <span className="text-decoration-line-through">Rs. {books.orginalPrice}</span>
-                  <span> Rs. {books.disPrice}</span>
-                </div> */}
+                <span className="fw-semibold d-flex justify-content-center fs-5">{books.name}</span>
               </div>
             </div>
           </a>
@@ -177,5 +138,4 @@ const Allbooks = ({allBooks}) => {
   );
 };
 
-export default Allbooks;
-
+export default BookDup;

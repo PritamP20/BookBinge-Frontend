@@ -198,7 +198,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
       if (ClgNotesUpload) {
         if (thumbnail == "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg") {
           // setNewbooks({
-          //   "id": allBooks.length+1+1,
+          //   "id": allBooks.length+1+1+1,
           //   "name":e.target.title.value,
           //   "by": e.target.auther.value,
           //   "url": thumbnailLength,
@@ -207,7 +207,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
           //   "ClgNotes": fileLength
           // })
           newBooks = {
-            "id": allBooks.length+1+1,
+            "id": allBooks.length+1+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
             "url": thumbnailLength,
@@ -217,7 +217,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
           }
         }else{
           // setNewbooks({
-          //   "id": allBooks.length+1+1,
+          //   "id": allBooks.length+1+1+1,
           //   "name":e.target.title.value,
           //   "by": e.target.auther.value,
           //   "url": thumbnail,
@@ -226,7 +226,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
           //   "ClgNotes": fileLength
           // })
           newBooks = {
-            "id": allBooks.length+1+1,
+            "id": allBooks.length+1+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
             "url": thumbnail,
@@ -238,7 +238,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
       }else{
         if (thumbnail == "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg") {
           // setNewbooks({
-          //   "id": allBooks.length+1+1,
+          //   "id": allBooks.length+1+1+1,
           //   "name":e.target.title.value,
           //   "by": e.target.auther.value,
           //   "url": thumbnailLength,
@@ -246,7 +246,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
           //   "detail": e.target.about.value
           // })
           newBooks={
-            "id": allBooks.length+1+1,
+            "id": allBooks.length+1+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
             "url": thumbnailLength,
@@ -255,7 +255,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
           }
         }else{
           // setNewbooks({
-          //   "id": allBooks.length+1+1,
+          //   "id": allBooks.length+1+1+1,
           //   "name":e.target.title.value,
           //   "by": e.target.auther.value,
           //   "url": thumbnail,
@@ -263,7 +263,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
           //   "detail": e.target.about.value
           // })
           newBooks = {
-            "id": allBooks.length+1+1,
+            "id": allBooks.length+1+1+1,
             "name":e.target.title.value,
             "by": e.target.auther.value,
             "url": thumbnail,
@@ -272,6 +272,7 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
           }
         }
       }
+      console.log(newBooks)
       addBooks(newBooks)
       // console.log(newBooks)
     },3000)

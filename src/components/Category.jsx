@@ -35,11 +35,11 @@ const Category = () => {
    <div className='mt-lg-5 mt-md-4 mt-sm-3 mt-3'>
     <div className='d-flex justify-content-center align-content-center align-items-center fs-1 text-black' style={{fontFamily:'serif'}}><span>Category</span></div>
     {screen ? 
-      <div className='m-3 row overflow-y-scroll d-flex  min-vw-100 justify-content-center align-content-center align-items-center'>
+      <div className=' row overflow-y-scroll d-flex  min-vw-100 justify-content-center align-content-center align-items-center'>
       {category.map(cate=>
         <a href='/' onClick={(e)=>handleCategory(e, cate.cate)} className='d-flex text-decoration-none text-white col-lg-2 col-md-2 col-sm-2 col-5  flex-column justify-content-center align-content-center align-items-center'>
         <img className='col-md-8 col-sm-12 col-12 ' src={cate.iconUrl} alt="" />
-        <span className='fs-3'><a href='' className='text-decoration-none text-black'>{cate.cate}</a></span>
+        <span className='fs-3'><a href='' className='text-decoration-none text-black' style={{color:'#1f89f2'}}>{cate.cate}</a></span>
       </a>
       )}
     </div>

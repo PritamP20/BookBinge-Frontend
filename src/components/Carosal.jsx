@@ -12,10 +12,10 @@ const Carosal = () => {
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption> */}
-        <div className='d-flex justify-content-center p-3 align-items-center' >
+        <div className='d-flex justify-content-center align-items-center' >
           <div className='p-lg-5 m-lg-5 p-md-4 p-sm-2 m-md-3 m-sm-2'>
-            <h1 className='d-flex fs-3 text-center justify-content-center' style={{fontFamily: "Rubik"}}>FREE AND DISSCOUNTED BESTSELLERS</h1>
-            <p className='text-wrap fs-6 text-center'>Join 150,000+ fellow readers. Get free and disscounted bestsellers straight to your inbox with the BookBinge. <a href="">Sign Up Now</a> </p>
+            <h1 className=' d-flex fs-1 text-center justify-content-center' style={{fontFamily: "Rubik"}}>FREE AND DISSCOUNTED BESTSELLERS</h1>
+            <p className='text-wrap fs-4 text-center'>Join 150,000+ fellow readers. Get free and disscounted bestsellers straight to your inbox with the BookBinge. <a href="">Sign Up Now</a> </p>
           </div>
         </div>
       </Carousel.Item>

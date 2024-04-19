@@ -9,7 +9,6 @@ import Books from './components/Books';
 import Demand from './components/Demand';
 import Footer from './components/Footer';
 import Carosal from './components/Carosal';
-import Genre from './components/Genre'; // 
 import Viwe from './components/Viwe';
 import Allbooks from './components/Allbooks';
 import Data from './data.json'
@@ -22,7 +21,10 @@ import SellerDub from './components/SellerDup';
 import {storage} from './firebase'
 import { ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'firebase/storage'
 import DocumentView from './components/DocumentView';
-import ReadPdf from './components/ReadPdf';
+import CarosalDup from './components/DUP/CarosalDup';
+import CategoryDup from './components/DUP/CategoryDup';
+import BookDup from './components/DUP/BookDup';
+import DashboardDup from './components/DUP/Dashboard';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -142,11 +144,14 @@ function App() {
   const Dashboard = ()=>{
     return(
       <div>
-        <Carosal></Carosal>
+        {/* <Carosal></Carosal>
         <Category ></Category>
         <Books allBooks={allBooks}></Books>
-        {/* <Demand ></Demand> */}
-        <Notes allBooks={allBooks}></Notes>
+        <Demand ></Demand>
+        <Notes allBooks={allBooks}></Notes> */}
+
+        <CarosalDup/>
+        <DashboardDup allBooks={allBooks} />
     </div>
     )
   }
@@ -159,20 +164,19 @@ function App() {
       <Router>
       <Navbar></Navbar>
       <Routes>
-        {/* <Route path='/' element={<Dashboard/>}/> */}
-        {/* <Route path='/' element={<Category/>} /> */}
-        {/* <Route path='/seller' element={<SellerDub setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/> */}
-        {/* <Route path='/view' element={<Viwe/>}/> */}
-        {/* <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/> */}
+        <Route path='/' element={<Dashboard/>}/>
+        <Route path='/' element={<Category/>} />
+        <Route path='/seller' element={<SellerDub setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/>
+        <Route path='/view' element={<Viwe/>}/>
+        <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/>
 
         
-        <Route path='/' element={<Allbooks allBooks={allBooks}/>}/>
+        {/* <Route path='/' element={<Allbooks allBooks={allBooks}/>}/> */}
 
-        {/* <Route path='/category' element={<BooksByCate/>}/> */}
-        {/* <Route path='/login' element={<Login/>}/> */}
+        <Route path='/category' element={<BooksByCate/>}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/delete' element={<DeleteBooks allBooks={allBooks} setAllBooks={setAllBooks}/>}/>
         <Route path='/document' element={<DocumentView/>}/>
-        <Route path='/pdf' element={<ReadPdf/>}/>
       </Routes>
       <Footer></Footer>
     </Router>
