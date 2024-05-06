@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Home1 = () => {
+const DialogBook = () => {
   return (
     <div>
-      hello
+      dialog
     </div>
   )
 }
 
-export default Home1
+export default DialogBook

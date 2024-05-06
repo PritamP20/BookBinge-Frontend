@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const CategoryDup = () => {
+
+  // let screen = false;
+  const [screen, setScreen] = useState(false)
+  useEffect(()=>{
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      setScreen(false)
+    } else {
+      setScreen(true)
+    }
+  },[])
+
   return (
     <>
-      <div className='m-2' style={{backgroundColor:'#DBF0FF'}}>
+      {screen ?
+        <div className='m-lg-1 m-sm-2 ' style={{backgroundColor:'#DBF0FF'}}>
         <h2 className='d-flex justify-content-center'>CATEGORY</h2>
         <form action="" className='pt-0 p-3 d-flex flex-column gap-3'>
           <div className='row'>
@@ -24,6 +36,9 @@ const CategoryDup = () => {
           </div>
         </form>
       </div>
+      :
+      <></>
+      }
     </>
   )
 }

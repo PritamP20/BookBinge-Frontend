@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // this is the cop of all books .jsx
@@ -114,15 +114,17 @@ const BookDup = ({allBooks}) => {
     
   }
 
+  
+
   return (
     <div className="" style={{ fontFamily: "serif" }}>
       <div
-        className="d-flex row p-lg-3 m-1 rounded-2" 
+        className="d-flex row p-lg-3 ms-0 m-1 rounded-2" 
         style={{ scrollbarWidth: "none", backgroundColor:'#DBF0FF' }}
       >
 
         {allBooks.map((books) => (
-          <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className=" d-flex justify-content-center mb-3 flex-column text-decoration-none text-black col-lg-2 col-sm-4 col-md-4 col-6">
+          <a href="" onClick={(e)=>handleClick(e, books)} key={books.id} className=" d-flex justify-content-center mb-3 flex-column text-decoration-none text-black col-lg-3 col-sm-4 col-md-4 col-6">
             <div className="book-thumbnail m-auto border border-black rounded-1" >
               <div className="d-flex justify-content-center">
                 <img className="col-12 p-1"  src={books.url} />

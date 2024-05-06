@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Viwe from "./Viwe";
+import Viwe from "../Viwe";
 import ClgNotes from "./ClgNotes";
 
 

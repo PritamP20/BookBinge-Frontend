@@ -17,7 +17,7 @@ const Footer = () => {
               <div className='d-flex justify-content-center m-auto '>
                 <div className="input-group">
                   <input type="text" className="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"/>
-                  <button class="btn text-white border border-2 border-white" type="button" id="button-addon2">Button</button>
+                  <button className="btn text-white border border-2 border-white" type="button" id="button-addon2">Button</button>
                 </div>
               </div>
             </div>

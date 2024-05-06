@@ -1,18 +1,17 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Data from '../data.json'
 import {storage} from '../firebase'
 import { ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'firebase/storage'
 
 const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
+
+  console.log(allBooks)
+
   const [thumbnail, setThumbnail] = useState("https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg");
-  // let thumbnail = "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg"
   const [cate, setCate] = useState('')
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [newBooks, setNewbooks] = useState(Data.books)
-  let newBooks = Data.books;
 
   const category = [
     {
@@ -53,19 +52,10 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
 
   const [fileUpload, setFileUpload] = useState()
   const [thumbnailUpload, setThumbnailUpload] = useState()
-  // const [fileList, setfileList] = useState([])
-  let fileList = []
-  let thumbnailList = []
-  let docUrl = ''
-  let fileLength = 0;
-  let thumbnailLength = 0;
-  let ClgNotesUpload = false
 
 
   const addBooks = async (book)=>{
-
-    // const data = await axios.post("http://localhost:8081/books",book).catch((err)=>console.log(err))
-
+    console.log(book)
     const data = await axios.post("https://bookbinge-backend.onrender.com/books",book).catch((err)=>console.log(err))
 
     console.log(data)
@@ -73,49 +63,8 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-
-
-    const imgurl = e.target.value.split(".");
-    if (imgurl[imgurl.length - 1] == "jpg") {
-      setThumbnail(e.target.value);
-      // thumbnail = e.target.value
-      console.log(thumbnail)
-    }else{
-    //   if (thumbnailUpload!=null) {
-    //     const imageListRef = ref(storage, "ClgNotes/")
-    //   thumbnailList = []
-    //   listAll(imageListRef).then((response)=>{
-    //     response.items.forEach((item)=>{
-    //       getDownloadURL(item).then((url)=>{
-    //         thumbnailLength+=1
-    //       })
-    //     })
-    //   })
-
-      
-    // if (thumbnailUpload!=null){
-    //     // ClgNotesUpload = true
-    //     setTimeout(()=>{
-    //     const imageRef = ref(storage, `thumbnail/${thumbnailLength}`)
-    //     uploadBytes(imageRef, thumbnailUpload).then(()=>{
-    //       console.log(thumbnailLength)
-    //       alert("thumbnail Uploaded")
-    //     })
-    //   }, 2000)
-    // }
-    //   }
-    }
-
-    // if (imgurl[imgurl.length - 1] == "jpg") {
-    //   setThumbnail(e.target.value);
-    //   // thumbnail = e.target.value
-    //   console.log(thumbnail)
-    // }else{
-    //   setThumbnail("https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg")
-    //   // thumbnail = "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg"
-    // }
-
-
+    console.log(e.target.value)
+    setThumbnail(e.target.value)
   };
 
   const handleCategory = (e, cate) => {
@@ -123,160 +72,69 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
     setCate(cate)
   };
 
-  const handleSubmit = async (e)=>{
-
-    e.preventDefault()
-
-    console.log("hello")
-    const imageListRefThumb = ref(storage, "thumbnail/")
-      thumbnailList = []
-      listAll(imageListRefThumb).then((response)=>{
-        response.items.forEach((item)=>{
-          getDownloadURL(item).then((url)=>{
-            thumbnailLength+=1
-          })
-        })
-      })
-      console.log(thumbnailUpload)
-      
-    if (thumbnailUpload!=null){
-      console.log("hello")
-        // ClgNotesUpload = true
-        setTimeout(()=>{
-        const imageRef = ref(storage, `thumbnail/${thumbnailLength}`)
-        uploadBytes(imageRef, thumbnailUpload).then(()=>{
-          console.log("length: "+thumbnailLength)
-          alert("thumbnail Uploaded")
-        })
-      }, 2000)
-    }
-
-    console.log("fileupload")
-    console.log(fileUpload)
-    const imageListRef = ref(storage, "ClgNotes/")
-      fileList = []
-      listAll(imageListRef).then((response)=>{
-        response.items.forEach((item)=>{
-          getDownloadURL(item).then((url)=>{
-            fileLength+=1
-          })
-        })
-      })
-
-      
-    if (fileUpload!=null){
-        ClgNotesUpload = true
-        setTimeout(()=>{
-        const imageRef = ref(storage, `ClgNotes/${fileLength}`)
-        uploadBytes(imageRef, fileUpload).then(()=>{
-          console.log(fileLength)
-          alert("file Uploaded")
-        })
-      }, 2000)
-    }
-
-    // console.log('submit')
-    // if (thumbnail == "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg") {
-    //   try {
-    //     setLoading(true);
-    //     const imgUrl = await uploadFile('image');
-    //     // setThumbnail(imgUrl)
-    //     thumbnail = imgUrl
-    //     console.log(thumbnail)
-    //     setImg(null);
-    //     setVideo(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("hello");
   
-    //     console.log("File upload success!");
-    //     setLoading(false);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    let thumbnailURL;
+    let fileURL;
+  
+    // Upload the thumbnail if there's one to upload
+    if (thumbnailUpload != null) {
+      const imageRef = ref(storage, `thumbnail/${Date.now()}`); // Using a unique identifier
+      await uploadBytes(imageRef, thumbnailUpload); // Wait for the upload to finish
+      thumbnailURL = await getDownloadURL(imageRef); // Get the download URL
+      console.log("Thumbnail Uploaded: " + thumbnailURL);
+      alert("Thumbnail Uploaded");
+    } else {
+      thumbnailURL = thumbnail; // Default
+    }
+  
+    // Upload the file if there's one to upload
+    if (fileUpload != null) {
+      const fileRef = ref(storage, `ClgNotes/${Date.now()}`); // Using a unique identifier
+      await uploadBytes(fileRef, fileUpload); // Wait for the upload to finish
+      fileURL = await getDownloadURL(fileRef); // Get the download URL
+      console.log("File Uploaded: " + fileURL);
+      alert("File Uploaded");
+    }
+  
+    // Create the new book object with the obtained URLs
+    let newBooks = {
+      id: allBooks.length + 1, // Ensure unique ID generation
+      name: e.target.title.value,
+      by: e.target.auther.value,
+      url: thumbnailURL,
+      category: cate,
+      detail: e.target.about.value,
+      ClgNotes: fileURL,
+    };
 
-    setTimeout(()=>{
-      console.log(thumbnail)
-      if (ClgNotesUpload) {
-        if (thumbnail == "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg") {
-          // setNewbooks({
-          //   "id": allBooks.length+1+1+1,
-          //   "name":e.target.title.value,
-          //   "by": e.target.auther.value,
-          //   "url": thumbnailLength,
-          //   "category":cate,
-          //   "detail": e.target.about.value,
-          //   "ClgNotes": fileLength
-          // })
-          newBooks = {
-            "id": allBooks.length+1+1+1,
-            "name":e.target.title.value,
-            "by": e.target.auther.value,
-            "url": thumbnailLength,
-            "category":cate,
-            "detail": e.target.about.value,
-            "ClgNotes": fileLength
-          }
-        }else{
-          // setNewbooks({
-          //   "id": allBooks.length+1+1+1,
-          //   "name":e.target.title.value,
-          //   "by": e.target.auther.value,
-          //   "url": thumbnail,
-          //   "category":cate,
-          //   "detail": e.target.about.value,
-          //   "ClgNotes": fileLength
-          // })
-          newBooks = {
-            "id": allBooks.length+1+1+1,
-            "name":e.target.title.value,
-            "by": e.target.auther.value,
-            "url": thumbnail,
-            "category":cate,
-            "detail": e.target.about.value,
-            "ClgNotes": fileLength
-          }
-        }
-      }else{
-        if (thumbnail == "https://m.media-amazon.com/images/I/71Ge374aXuL._SY522_.jpg") {
-          // setNewbooks({
-          //   "id": allBooks.length+1+1+1,
-          //   "name":e.target.title.value,
-          //   "by": e.target.auther.value,
-          //   "url": thumbnailLength,
-          //   "category":cate,
-          //   "detail": e.target.about.value
-          // })
-          newBooks={
-            "id": allBooks.length+1+1+1,
-            "name":e.target.title.value,
-            "by": e.target.auther.value,
-            "url": thumbnailLength,
-            "category":cate,
-            "detail": e.target.about.value
-          }
-        }else{
-          // setNewbooks({
-          //   "id": allBooks.length+1+1+1,
-          //   "name":e.target.title.value,
-          //   "by": e.target.auther.value,
-          //   "url": thumbnail,
-          //   "category":cate,
-          //   "detail": e.target.about.value
-          // })
-          newBooks = {
-            "id": allBooks.length+1+1+1,
-            "name":e.target.title.value,
-            "by": e.target.auther.value,
-            "url": thumbnail,
-            "category":cate,
-            "detail": e.target.about.value
-          }
-        }
-      }
-      console.log(newBooks)
-      addBooks(newBooks)
-      // console.log(newBooks)
-    },3000)
-  }
+    if (fileURL!=null) {
+      newBooks = {
+        id: allBooks.length + 1 , // Ensure unique ID generation
+        name: e.target.title.value,
+        by: e.target.auther.value,
+        url: thumbnailURL,
+        category: cate,
+        detail: e.target.about.value,
+        ClgNotes: fileURL,
+      };
+    }else{
+      newBooks = {
+        id: allBooks.length + 1 , // Ensure unique ID generation
+        name: e.target.title.value,
+        by: e.target.auther.value,
+        url: thumbnailURL,
+        category: cate,
+        detail: e.target.about.value,
+      };
+    }
+  
+    console.log(newBooks);
+    addBooks(newBooks); // Add the book to your collection or database
+  };
+  
 
   const uploadFile = async (type) => {
     const data = new FormData();
@@ -410,19 +268,6 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
       </form>
       
     </div>
-    // <div>
-    //   <form onSubmit={(e)=>handleSubmit(e)} action="">
-    //     <div>
-    //     <label htmlFor="title">title: </label>
-    //     <input type="text" name="title" />
-    //     </div>
-    //     <div>
-    //     <label htmlFor="title">title: </label>
-    //     <input type="text" name="cate" />
-    //     </div>
-    //     <button type="submit">submit</button>
-    //   </form>
-    // </div>
   );
 };
 

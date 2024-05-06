@@ -1,49 +1,104 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaUser } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaSearch, FaBars, FaBriefcase, FaTrash, FaArrowRight } from 'react-icons/fa';
+import {MdLibraryBooks} from 'react-icons/md'
 import logo from '../assets/logo.png'
 import './Navbar.css'
+import { useTheme, Box } from '@mui/material';
+import Drawer from '@mui/material/Drawer';
+import SignUp2 from './auth/SignUp';
+import Login from './auth/Login';
 
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+  
+  const handlePortfolio = (e)=>{
+    e.preventDefault()
+    navigate('/portfolio')
+  }
+
+  const category = ["Romance", "Manga", "Sci-fi", "Mistry", "Biograpy", "Horror"]
+
+  const DrawerList = (
+    <Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
+      <div>
+        <div className='d-flex flex-column'>
+          <div className='d-flex container align-items-center' style={{height:'70px'}}>
+            <h4>Hey, There!</h4>
+          </div>
+          <hr className='p-0 m-0'/>
+        </div>
+        <div className='d-flex flex-column'>
+          <a href='' onClick={e=>handlePortfolio(e)} className='d-flex text-decoration-none text-black justify-content-between container align-items-center' style={{height:'70px'}}>
+            <span className='text-decoration-none text-black'><span className='fs-6  d-flex align-items-center'> <FaBriefcase className='me-2'/> Your Portfolio</span></span>
+            <span className='justify-content-end'> <FaArrowRight/> </span>
+          </a>
+          <hr className='p-0 m-0'/>
+        </div>
+        <div className='d-flex flex-column'>
+          <a href='/allbooks' className='d-flex container justify-content-between text-decoration-none text-black align-items-center' style={{height:'70px'}}>
+            <a href="" className='text-decoration-none text-black'><span className='fs-6  d-flex align-items-center'> <MdLibraryBooks className='me-2'/> Collections</span></a>
+            <span className='justify-content-end'> <FaArrowRight/> </span>
+          </a>
+          <hr className='p-0 m-0'/>
+        </div>
+        <div className='d-flex flex-column'>
+          <a href='/delete' className='d-flex container  justify-content-between text-decoration-none text-black align-items-center' style={{height:'70px'}}>
+            <a href="" className='text-decoration-none text-black'><span className='fs-6  d-flex align-items-center'><FaTrash className='me-2'/> Delete</span></a>
+            <span className='justify-content-end'> <FaArrowRight/> </span>
+          </a>
+          <hr className='p-0 m-0'/>
+        </div>
+      </div>
+    </Box>
+  );
+
   return (
 
-    <nav class="navbar navbar-expand-lg navbar-expand-md border-bottom border-3 border-black" style={{backgroundColor:'#8dbceb'}}>
-  <div class="container-fluid">
-    <a class="navbar-brand m-auto pe-lg-3 pe-md-3 text-black col-lg-2 col-md-3 col-5" href="/"> <img className='col-lg-9 col-12' src={logo} alt="" /> </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto  mb-2 col mb-lg-0 gap-lg-5 fs-3 ">
-        <li class="nav-item">
-          <a class="underline-hover nav-link active text-black" aria-current="page" href="/allbooks">Collectioins</a>
-        </li>
-        <li class="nav-item ">
-          <a class="underline-hover nav-link text-black" href="/seller">Seller</a>
-        </li>
-        <li class="nav-item ">
-          <a class="underline-hover nav-link text-black" href="/">Portfolio</a>
-        </li>
-        <li class="nav-item ">
-          <a class="underline-hover nav-link text-black" href="/delete">Delete</a>
-        </li>
-        <li class="nav-item ms-lg-auto ms-md-auto">
-          <a class="underline-hover nav-link text-black" href="/seller">Login</a>
-        </li>
+  <div className="">
+    <div className="d-flex justify-content-between align-items-center col-10 m-auto p-lg-2 pt-md-2 gap-2">
+      <a href="/" className='text-black text-decoration-none'><span className="fs-3">BookBinge</span></a>
       
+      {/* Search Bar */}
+      <div className="d-flex align-items-center col-6 position-relative">
+        <FaSearch
+          style={{
+            position: "absolute",
+            left: "10px",
+            color: "#6c757d",
+          }}
+        />
+        <input
+          type="text"
+          className="form-control"
+          style={{ paddingLeft: "30px", height: "85%" }}
+          placeholder="Search for new books, comics, study materials"
+        />
+      </div>
+
+      {/* Last Div */}
+      <div className="d-flex align-items-center gap-3">
+        {/* <button onClick={e=>handleLogin(e)} className="border-0 rounded-1 bg-danger text-white" style={{ fontSize: "15px", width: "5rem", height: "2rem" }}> Sign Up </button> */}
+        {/* <SignUp2/> */}
+        <Login/>
+        {/* <a href="" className="text-black fs-4 d-flex justify-content-center align-items-center"><FaBars /></a> */}
         
-      </ul>
-      {/* <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success text-black" type="submit">Search</button>
-      </form> */}
-      {/* <a className='fs-3 text-black p-1 text-black justify-content-center align-items-center' href="/login"><FaUser className=''/></a> */}
-      {/* <a class="nav-link fs-5 active text-black" aria-current="page" href="/login">Login</a> */}
+        <div className='col-3 fs-1 m-auto'>
+          <a herf="" className='col-12 text-black' onClick={toggleDrawer(true)}><FaBars className='col-10 d-flex align-items-center'/></a>
+          <Drawer  anchor='right' open={open} onClose={toggleDrawer(false)}>
+            {DrawerList}
+          </Drawer>
+        </div>
+
+      </div>
     </div>
   </div>
-  
-</nav>
   );
 };
 

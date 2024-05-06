@@ -1,180 +1,97 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import axios, { all } from 'axios';
 import Category from './components/Category';
 import Navbar from './components/Navbar';
 import Seller from './components/Seller';
-import Books from './components/Books';
-import Demand from './components/Demand';
 import Footer from './components/Footer';
 import Carosal from './components/Carosal';
 import Viwe from './components/Viwe';
 import Allbooks from './components/Allbooks';
 import Data from './data.json'
-import BooksByCate from './components/BooksByCate';
-import Notes from './components/Notes';
-import Login from './components/Login';
-import Upload from './components/upload';
+import Notes from './components/notes/Notes';
+import SignUp from './components/auth/SignUp';
 import DeleteBooks from './components/DeleteBooks';
 import SellerDub from './components/SellerDup';
 import {storage} from './firebase'
 import { ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'firebase/storage'
-import DocumentView from './components/DocumentView';
+import DocumentView from './components/notes/DocumentView';
 import CarosalDup from './components/DUP/CarosalDup';
 import CategoryDup from './components/DUP/CategoryDup';
 import BookDup from './components/DUP/BookDup';
 import DashboardDup from './components/DUP/Dashboard';
+import CateNav from './components/Navbar/cateNav';
+import DashBoardBooks from './components/DUP/DashBoardBooks';
+import BillBoard from './components/DUP/BillBoard';
+import Product from './components/Books/Product'
+import Portfolio from './components/portfolio/Portfolio';
+// import verifyToken from './components/auth/decoding';
+import { jwtDecode } from 'jwt-decode';
+import Login from './components/auth/Login';
 
 function App() {
+  const token = localStorage.getItem("token")
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+
+ 
+
   const [count, setCount] = useState(0)
   const [allBooks, setAllBooks] = useState(Data.books)
   const [category, setCategory] = useState()
   const [url, setUrl] = useState()
+  const [userDetail, setUserDetails] = useState({});
+
 
   const getAllbooks = async ()=>{
-
-    // const data = await axios.get("http://localhost:8081/books")
-
     const data = await axios.get("https://bookbinge-backend.onrender.com/books")
-
     setAllBooks(data.data)
-    // console.log(data.data)
   }
 
-  
-  const [thumbnailList, setThumbnailList] = useState([])
-  const [clgNotesList, setClgNotesList] = useState([])
-
-  const imageListRef = ref(storage, "thumbnail/")
-  const clgNotesRef =  ref(storage, "ClgNotes/")
-
-  const handleThumbnail = ()=>{
-    console.log('url: ')
-    console.log(thumbnailList)
-  }
 
   useEffect(()=>{
     getAllbooks()
-
-    listAll(imageListRef).then((response)=>{
-      response.items.forEach((item)=>{
-        getDownloadURL(item).then((url)=>{
-          setThumbnailList((prev)=>[...prev, url])
-        })
-      })
-    })
-    listAll(clgNotesRef).then((response)=>{
-      response.items.forEach((item)=>{
-        getDownloadURL(item).then((url)=>{
-          setClgNotesList((prev)=>[...prev, url])
-        })
-      })
-    })
+    const decodedToken = jwtDecode(token);
+    console.log(decodedToken)
+    setUserDetails(decodedToken)
   },[])
-  console.log(thumbnailList)
-
-  const handleUpdateThumbnail = async (data, url)=>{
-    if (data!=[]) {
-      // console.log("hello")
-      let id = data[0].id
-      // console.log("url id: " + data[0].url)
-      data[0].url = url
-      // console.log("object")
-      // console.log(id)
-
-      // const update = await axios.patch(`http://localhost:8081/books/update/${id}`, {'url': data[0].url})
-
-      const update = await axios.patch(`https://bookbinge-backend.onrender.com/books/update/${id}`, {'url': data[0].url})
-
-      // console.log(update)
-    }
-  }
-  const handleUpdateClgNotes = async (data, url)=>{
-    if (data!=[]) {
-      // console.log("hello")
-      let id = data[0].id
-      console.log("url id: " + data[0].ClgNotes)
-      data[0].ClgNotes = url
-      console.log("object")
-      console.log(id)
-
-      // const update = await axios.patch(`http://localhost:8081/books/update/${id}`, {'ClgNotes': data[0].ClgNotes})
-
-      const update = await axios.patch(`https://bookbinge-backend.onrender.com/books/update/${id}`, {'ClgNotes': data[0].ClgNotes})
-
-      console.log(update)
-    }
-  }
-
-  for (let index = 0; index < thumbnailList.length; index++) {
-    const urlList = thumbnailList[index].split('%')
-    const folderName = urlList[0].split('/').pop()
-    const fileName = urlList[1].split("?")[0]
-    const realFileName = fileName.split('2F')[1]
-    const data = allBooks.filter(book=> +book.url == realFileName)
-    // console.log(`${realFileName} : ${data}`)
-    if (data==[]) {
-      console.log("empty")
-    }else{
-      // console.log("object")
-      handleUpdateThumbnail(data, thumbnailList[index])
-    }
-    // console.log(`${index}: ${thumbnailList[index]}`)
-  }
-  for (let index = 0; index < clgNotesList.length; index++) {
-    const urlList = clgNotesList[index].split('%')
-    const folderName = urlList[0].split('/').pop()
-    const fileName = urlList[1].split("?")[0]
-    const realFileName = fileName.split('2F')[1]
-    console.log("clgnotes : "+realFileName)
-    const data = allBooks.filter(book=> +book.ClgNotes == realFileName)
-    console.log(`${realFileName} : ${data}`)
-    if (data==[]) {
-      console.log("empty")
-    }else{
-      console.log("object")
-      handleUpdateClgNotes(data, clgNotesList[index])
-    }
-    console.log(`${index}: ${clgNotesList[index]}`)
-    
-  }
-
 
   const Dashboard = ()=>{
     return(
       <div>
         {/* <Carosal></Carosal>
         <Category ></Category>
-        <Books allBooks={allBooks}></Books>
         <Demand ></Demand>
         <Notes allBooks={allBooks}></Notes> */}
 
         <CarosalDup/>
-        <DashboardDup allBooks={allBooks} />
+        {/* <DashboardDup allBooks={allBooks} /> */}
+        <DashBoardBooks title={"Recommended"} allBooks={allBooks}></DashBoardBooks>
+        <BillBoard></BillBoard>
+        <DashBoardBooks title={"New Arraivals"} allBooks={allBooks}></DashBoardBooks>
+        
     </div>
     )
   }
 
-  let colourBg = 'white';
-  let textColor = 'black';
 
   return (
     <div className='' style={{backgroundColor: 'white'}}>
       <Router>
-      <Navbar></Navbar>
+      <Navbar userDetail={userDetail}></Navbar>
+      <CateNav/>
       <Routes>
         <Route path='/' element={<Dashboard/>}/>
         <Route path='/' element={<Category/>} />
         <Route path='/seller' element={<SellerDub setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/>
         <Route path='/view' element={<Viwe/>}/>
         <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/>
+        <Route path='/book' element={<Product/>} allBooks={allBooks}/>
 
-        
-        {/* <Route path='/' element={<Allbooks allBooks={allBooks}/>}/> */}
-
-        <Route path='/category' element={<BooksByCate/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/portfolio' element={<Portfolio userDetail = {userDetail}/>}/>
+        <Route path='/signUp' element={<SignUp />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/delete' element={<DeleteBooks allBooks={allBooks} setAllBooks={setAllBooks}/>}/>
         <Route path='/document' element={<DocumentView/>}/>
       </Routes>

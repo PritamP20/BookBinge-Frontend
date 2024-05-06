@@ -5,10 +5,11 @@ import BookDup from './BookDup'
 const Dashboard = ({allBooks}) => {
   return (
     <div className='row'>
-      <div className='col-2'>
+      <div className='col-lg-2 col-md-3'>
         <CategoryDup></CategoryDup>
       </div>
-      <div className='col-10'>
+      <div className='col-lg-10 col-md-9'>
+        
         <BookDup allBooks={allBooks}></BookDup>
       </div>
     </div>
