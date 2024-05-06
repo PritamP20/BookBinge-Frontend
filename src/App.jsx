@@ -53,9 +53,11 @@ function App() {
   useEffect(()=>{
     const token = localStorage.getItem("token")
     getAllbooks()
-    const decodedToken = jwtDecode(token);
-    console.log(decodedToken)
-    setUserDetails(decodedToken)
+    if (token!=null) {
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken)
+      setUserDetails(decodedToken)
+    }
   },[])
 
   const Dashboard = ()=>{
