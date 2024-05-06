@@ -43,7 +43,9 @@ const Login = () => {
       }
       const result = await axios.post("http://localhost:8081/auth/login",formData)
       const token = result.data.token
+      localStorage.setItem("token", token)
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      handleClose()
     } catch (error) {
       console.log(error)
     }
