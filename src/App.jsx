@@ -51,6 +51,7 @@ function App() {
 
 
   useEffect(()=>{
+    const token = localStorage.getItem("token")
     getAllbooks()
     const decodedToken = jwtDecode(token);
     console.log(decodedToken)
