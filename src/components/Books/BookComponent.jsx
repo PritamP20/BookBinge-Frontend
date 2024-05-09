@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import notFound from '../../assets/notFound.png'
+import { useNavigate } from 'react-router-dom'
 
 const BookComponent = ({allBooks, activeCate}) => {
     console.log(activeCate)
@@ -11,6 +12,17 @@ const BookComponent = ({allBooks, activeCate}) => {
     }else{
         filterBook = allBooks
         console.log(filterBook)
+    }
+
+    const navigate = useNavigate()
+
+    const handleClick = (e, book)=>{
+        e.preventDefault()
+        if (book.category=='ClgNotes') {
+            navigate('/document', {state: {"ClgNotes": book}})
+        }else{
+            navigate('/bookView', {state:{book:book}})
+        }
     }
   return (
     <div>
@@ -23,7 +35,7 @@ const BookComponent = ({allBooks, activeCate}) => {
         <div className="d-flex  row  gap-5" style={{scrollbarWidth:'none'}}>
         
             {filterBook.map(book=>
-                <a href='' className='text-decoration-none text-black' style={{ flexBasis: '21%', minWidth:'18%' }}>
+                <a href='' onClick={e=>handleClick(e,book)} className='text-decoration-none text-black' style={{ flexBasis: '21%', minWidth:'18%' }}>
                     <img className="w-100 rounded-2" src={book.url} alt="" />
                     <div className='d-flex flex-column'>
                         <span className='fw-semibold fs-5'>{book.name}</span>

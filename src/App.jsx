@@ -63,6 +63,8 @@ function App() {
 
   },[])
 
+  const clgNotes = allBooks.filter(book=> book.category == 'ClgNotes')
+
   const Dashboard = ()=>{
     return(
       <div>
@@ -75,7 +77,11 @@ function App() {
         {/* <DashboardDup allBooks={allBooks} /> */}
         <DashBoardBooks title={"Recommended"} allBooks={allBooks}></DashBoardBooks>
         <BillBoard></BillBoard>
-        <DashBoardBooks title={"New Arraivals"} allBooks={allBooks}></DashBoardBooks>
+        {clgNotes.length!=0 ?
+          <DashBoardBooks title={"Notes"} allBooks={clgNotes}></DashBoardBooks>
+          :
+          <></>
+        }
         
     </div>
     )

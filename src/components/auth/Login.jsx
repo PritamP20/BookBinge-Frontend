@@ -41,7 +41,7 @@ const Login = () => {
         "email":email,
         "password":password
       }
-      const result = await axios.post("http://localhost:8081/auth/login",formData)
+      const result = await axios.post("https://bookbinge-backend.onrender.com/auth/login",formData)
       const token = result.data.token
       localStorage.setItem("token", token)
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

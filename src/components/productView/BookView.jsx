@@ -8,13 +8,10 @@ const BookView = ({userDetail}) => {
 
   const location = useLocation()
   const book = location.state
-  console.log(book)
-
-  console.log(book.book.listedOn)
-  console.log(userDetail)
 
   const [error, setError] = useState()
   const [alert, setAlert] = useState(false)
+  const [alertFav, setAlertFav] = useState(false)
 
   const handleRent = async (e)=>{
     e.preventDefault()
@@ -23,14 +20,45 @@ const BookView = ({userDetail}) => {
     const possesdBy = userDetail;
     const updatedBook = {...book.book, "possesdBy":possesdBy, "possesdOn": {"date":date.getDate(), "month":date.getMonth(), "yera":date.getFullYear()}}
     try {
-      await axios.put(`http://localhost:8081/books/${book.book.id}`,updatedBook)
+      await axios.put(`https://bookbinge-backend.onrender.com/books/${book.book.id}`,updatedBook)
     } catch (error) {
-      console.log("error: ",error)
       setError(true)
     }
     setTimeout(()=>[
       setAlert(false)
     ],2000)
+  }
+
+  const handleCollections = async (e)=>{
+    setAlertFav(true)
+    e.preventDefault()
+
+    const allCollectios = await axios.get("https://bookbinge-backend.onrender.com/collection/")
+    const bookTest = allCollectios.data.filter(book=> book.email == userDetail.email)
+
+    
+    if (bookTest.length==0) {
+      console.log("posting")
+      const data = {"email":userDetail.email, "collection":[book.book.id]};
+      const interestBook = await axios.post("https://bookbinge-backend.onrender.com/collection",data) 
+    }else{
+      console.log("putting")
+      const id = bookTest[0]._id
+      const dup = bookTest[0].collection.find(id=>id==book.book.id)
+
+      if (dup==undefined) {
+        bookTest[0].collection.push(book.book.id)
+        const data = {"email":userDetail.email, "collection":bookTest[0].collection}
+        const updatating = await axios.put(`https://bookbinge-backend.onrender.com/collection/${id}`, data)
+      }
+
+    }
+    
+    try {
+      
+    } catch (error) {
+      
+    }
   }
 
   return (
@@ -57,7 +85,7 @@ const BookView = ({userDetail}) => {
           </div>
           <hr />
           <div className='d-flex'>
-            <button type="button" onClick={e=>handleRent(e)} className="btn d-flex m-auto btn-outline-danger">Rent It</button> / <button type="button" className="btn d-flex m-auto btn-outline-danger">Add to Favorites</button> 
+            <button type="button" onClick={e=>handleRent(e)} className="btn d-flex m-auto btn-outline-danger">Rent It</button> / <button type="button" onClick={e=> handleCollections(e)} className="btn d-flex m-auto btn-outline-danger">Add to Favorites</button> 
           </div>
           { alert ?
             <Stack sx={{ width: '100%' }} spacing={2}>

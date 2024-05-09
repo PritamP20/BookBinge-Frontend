@@ -20,6 +20,7 @@ const SignUp = ({handleCloseLogin}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [phone, setPhone] = useState()
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -45,9 +46,10 @@ const SignUp = ({handleCloseLogin}) => {
       const data = {
         "name":name,
         "email":email,
-        "password":password
+        "password":password,
+        "phoneNo":phone
       }
-      const user = await axios.post('http://localhost:8081/auth/signup', data)
+      const user = await axios.post('https://bookbinge-backend.onrender.com/auth/signup', data)
       const token = user.data.token
       localStorage.setItem("token", token)
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -89,6 +91,14 @@ const SignUp = ({handleCloseLogin}) => {
             fullWidth
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            margin="dense"
+            label="Phone"
+            type="number"
+            fullWidth
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
           <TextField
             margin="dense"

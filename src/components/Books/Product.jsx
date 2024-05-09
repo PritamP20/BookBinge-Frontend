@@ -5,7 +5,7 @@ import BookComponent from './BookComponent';
 const Product = ({ allBooks }) => {
   const location = useLocation();
   const { category } = location.state;
-  const cate = ["Romance", "Manga", "Sci-Fi", "Mystery", "Biography", "Horror"]; // Corrected spelling for Mystery and Biography
+  const cate = ["Romance", "Manga", "Sci-Fi", "Mistry", "Biograpy", "Horror", "ClgNotes"]; // Corrected spelling for Mystery and Biography
 
   const [activeCate, setActiveCate] = useState([]);
 

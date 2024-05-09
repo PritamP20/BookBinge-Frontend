@@ -5,7 +5,11 @@ const Recommended = ({allBooks, title}) => {
     const navigate = useNavigate()
     const handlePreview = (e, book)=>{
         e.preventDefault()
-        navigate('/bookView', {state:{book:book}})
+        if (book.category!= 'ClgNotes') {
+          navigate('/bookView', {state:{book:book}})
+        }else{
+          navigate('/document', {state: {"ClgNotes": book}})
+        }
     }
   return (
     <div className='mt-lg-5 mb-lg-5'>
@@ -15,7 +19,7 @@ const Recommended = ({allBooks, title}) => {
             <a href="" className='text-danger justify-content-end fs-5'>See all</a>
         </div>
         
-        <div className="d-flex justify-content-between overflow-x-scroll flex-nowrap gap-4" style={{scrollbarWidth:'none'}}>
+        <div className="d-flex  overflow-x-scroll flex-nowrap gap-4" style={{scrollbarWidth:'none'}}>
             
             {allBooks.map(book=>
                 <a href='' onClick={e=>handlePreview(e, book)} className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
