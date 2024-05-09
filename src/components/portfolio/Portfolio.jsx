@@ -1,7 +1,7 @@
 import React from 'react'
 import DashBoardBooks from '../DUP/DashBoardBooks'
 
-const Portfolio = ({userDetail}) => {
+const Portfolio = ({userDetail, allBooks}) => {
   console.log("userDetail: portfolio", userDetail)
   return (
     <div className='pt-5 pb-5' style={{backgroundColor:'#f3f4f6'}}>
@@ -20,9 +20,9 @@ const Portfolio = ({userDetail}) => {
             </div>
         </div>
       <div>
-        <DashBoardBooks title={'Books In Possession'}></DashBoardBooks>
-        <DashBoardBooks title={'Interested Books'}></DashBoardBooks>
-        <DashBoardBooks title={'Your Books'}></DashBoardBooks>
+        <DashBoardBooks allBooks={allBooks} title={'Books In Possession'} ></DashBoardBooks>
+        <DashBoardBooks allBooks={allBooks} title={'Interested Books'}></DashBoardBooks>
+        <DashBoardBooks allBooks={allBooks} title={'Your Books'}></DashBoardBooks>
       </div>
     </div>
   )

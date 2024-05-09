@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import {storage} from '../firebase'
 import { ref, uploadBytes, listAll, getDownloadURL, deleteObject } from 'firebase/storage'
 
-const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
+const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
 
   console.log(allBooks)
 
@@ -75,7 +75,11 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("hello");
-  
+
+    const date = new Date()
+    const DateFormat = {"date": date.getDate(), "month":date.getMonth(), "year":date.getFullYear()}
+    console.log(DateFormat)
+
     let thumbnailURL;
     let fileURL;
   
@@ -108,6 +112,8 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
       category: cate,
       detail: e.target.about.value,
       ClgNotes: fileURL,
+      listedBy: userDetail,
+      listedOn: DateFormat
     };
 
     if (fileURL!=null) {
@@ -119,6 +125,8 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
         category: cate,
         detail: e.target.about.value,
         ClgNotes: fileURL,
+        listedBy: userDetail,
+        listedOn: DateFormat
       };
     }else{
       newBooks = {
@@ -128,6 +136,8 @@ const SellerDub = ({setAllBooks, allBooks, setUrl, url}) => {
         url: thumbnailURL,
         category: cate,
         detail: e.target.about.value,
+        listedBy: userDetail,
+        listedOn: DateFormat
       };
     }
   

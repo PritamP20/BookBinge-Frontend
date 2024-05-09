@@ -10,7 +10,7 @@ import SignUp2 from './auth/SignUp';
 import Login from './auth/Login';
 
 
-const Navbar = () => {
+const Navbar = ({userDetail}) => {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false);
 

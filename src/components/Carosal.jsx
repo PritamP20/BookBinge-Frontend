@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap'
 
 const Carosal = () => {
   return (
-    <Carousel className='mt-5'>
+    <Carousel className=''>
       <Carousel.Item className='d-flex text-black justify-content-center align-items-center' interval={500} >
         {/* <ExampleCarouselImage text="First slide" /> */}
         {/* <img className='h-25' src="https://manybooks.net/sites/default/files/2018-07/bookdisplaysmall.jpg" alt="" /> */}

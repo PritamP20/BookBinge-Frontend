@@ -1,6 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Recommended = ({allBooks, title}) => {
+    console.log(allBooks)
+    const navigate = useNavigate()
+    const handlePreview = (e)=>{
+        e.preventDefault()
+        navigate('/bookView')
+    }
   return (
     <div className='mt-lg-5 mb-lg-5'>
       <div className='m-auto col-10'>
@@ -10,48 +17,17 @@ const Recommended = ({allBooks, title}) => {
         </div>
         
         <div className="d-flex justify-content-between overflow-x-scroll flex-nowrap gap-4" style={{scrollbarWidth:'none'}}>
-        <a href='' className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
-                <img className="w-100 rounded-2" src="https://m.media-amazon.com/images/I/81aCMT1zKtL._SY522_.jpg" alt="" />
-                <div className='d-flex flex-column'>
-                    <span className='fw-semibold fs-5'>Harry Potter</span>
-                    <span className='fs-5 text-secondary'>Sci-Fi/Mystry</span>
-                </div>
-            </a>
-            <a href='' className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
-                <img className="w-100 rounded-2" src="https://m.media-amazon.com/images/I/91G+QE3U5KL._SY522_.jpg" alt="" />
-                <div className='d-flex flex-column'>
-                    <span className='fw-semibold fs-5'>Perci Jackson</span>
-                    <span className='fs-5 text-secondary'>Sci-Fi/Gods</span>
-                </div>
-            </a>
-            <a href='' className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
-                <img className="w-100 rounded-2" src="https://m.media-amazon.com/images/I/71XEsXS5RlL._SY522_.jpg" alt="" />
-                <div className='d-flex flex-column'>
-                    <span className='fw-semibold fs-5'>Pychology of money</span>
-                    <span className='fs-5 text-secondary'>Money/Knowledge</span>
-                </div>
-            </a>
-            <a href='' className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
-                <img className="w-100 rounded-2" src="https://m.media-amazon.com/images/I/91gMTGkFwBL._SY522_.jpg" alt="" />
-                <div className='d-flex flex-column'>
-                    <span className='fw-semibold fs-5'>Intestellar</span>
-                    <span className='fs-5 text-secondary'>Sci-fi</span>
-                </div>
-            </a>
-            <a href='' className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
-                <img className="w-100 rounded-2" src="https://m.media-amazon.com/images/I/61ijmpuQlRL._SY522_.jpg" alt="" />
-                <div className='d-flex flex-column'>
-                    <span className='fw-semibold fs-5'>Unlocking Secrets of Unicorn</span>
-                    <span className='fs-5 text-secondary'>Entrepreneurship</span>
-                </div>
-            </a>
-            <a href='' className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
-                <img className="w-100 rounded-2" src="https://m.media-amazon.com/images/I/61281K06PcL._SY522_.jpg" alt="" />
-                <div className='d-flex flex-column'>
-                    <span className='fw-semibold fs-5'>Intestellar</span>
-                    <span className='fs-5 text-secondary'>Sci-Fi</span>
-                </div>
-            </a>
+            
+            {allBooks.map(book=>
+                <a href='' onClick={e=>handlePreview(e)} className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
+                    <img className="w-100 rounded-2" src={book.url} alt="" />
+                    <div className='d-flex flex-column'>
+                        <span className='fw-semibold fs-5'>{book.name}</span>
+                        <span className='fs-5 text-secondary'>{book.category}</span>
+                    </div>
+                </a>
+            )}
+            
         </div>
       </div>
       

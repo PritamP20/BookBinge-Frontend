@@ -29,6 +29,7 @@ import Portfolio from './components/portfolio/Portfolio';
 // import verifyToken from './components/auth/decoding';
 import { jwtDecode } from 'jwt-decode';
 import Login from './components/auth/Login';
+import BookView from './components/productView/BookView';
 
 function App() {
   const token = localStorage.getItem("token")
@@ -58,6 +59,7 @@ function App() {
       console.log(decodedToken)
       setUserDetails(decodedToken)
     }
+
   },[])
 
   const Dashboard = ()=>{
@@ -87,12 +89,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Dashboard/>}/>
         <Route path='/' element={<Category/>} />
-        <Route path='/seller' element={<SellerDub setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/>
+        <Route path='/seller' element={<SellerDub userDetail={userDetail} setAllBooks={setAllBooks} allBooks={allBooks} setUrl={setUrl} url={url}/>}/>
         <Route path='/view' element={<Viwe/>}/>
         <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/>
-        <Route path='/book' element={<Product/>} allBooks={allBooks}/>
+        <Route path='/book' element={<Product allBooks={allBooks}/>} allBooks={allBooks}/>
+        <Route path='/bookView' element={<BookView/>} allBooks={allBooks}/>
 
-        <Route path='/portfolio' element={<Portfolio userDetail = {userDetail}/>}/>
+        <Route path='/portfolio' element={<Portfolio userDetail = {userDetail} allBooks={allBooks}/>}/>
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
         <Route path='/delete' element={<DeleteBooks allBooks={allBooks} setAllBooks={setAllBooks}/>}/>
