@@ -49,6 +49,7 @@ function App() {
     const data = await axios.get("https://bookbinge-backend.onrender.com/books")
     setAllBooks(data.data)
   }
+  console.log(allBooks)
 
 
   useEffect(()=>{
@@ -93,7 +94,7 @@ function App() {
         <Route path='/view' element={<Viwe/>}/>
         <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/>
         <Route path='/book' element={<Product allBooks={allBooks}/>} allBooks={allBooks}/>
-        <Route path='/bookView' element={<BookView/>} allBooks={allBooks}/>
+        <Route path='/bookView' element={<BookView userDetail={userDetail}/>} allBooks={allBooks}/>
 
         <Route path='/portfolio' element={<Portfolio userDetail = {userDetail} allBooks={allBooks}/>}/>
         <Route path='/signUp' element={<SignUp />} />

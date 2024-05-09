@@ -2,11 +2,10 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Recommended = ({allBooks, title}) => {
-    console.log(allBooks)
     const navigate = useNavigate()
-    const handlePreview = (e)=>{
+    const handlePreview = (e, book)=>{
         e.preventDefault()
-        navigate('/bookView')
+        navigate('/bookView', {state:{book:book}})
     }
   return (
     <div className='mt-lg-5 mb-lg-5'>
@@ -19,7 +18,7 @@ const Recommended = ({allBooks, title}) => {
         <div className="d-flex justify-content-between overflow-x-scroll flex-nowrap gap-4" style={{scrollbarWidth:'none'}}>
             
             {allBooks.map(book=>
-                <a href='' onClick={e=>handlePreview(e)} className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
+                <a href='' onClick={e=>handlePreview(e, book)} className='text-decoration-none text-black' style={{ flexBasis: '18%', minWidth:'18%' }}>
                     <img className="w-100 rounded-2" src={book.url} alt="" />
                     <div className='d-flex flex-column'>
                         <span className='fw-semibold fs-5'>{book.name}</span>

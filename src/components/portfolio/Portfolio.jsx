@@ -2,7 +2,12 @@ import React from 'react'
 import DashBoardBooks from '../DUP/DashBoardBooks'
 
 const Portfolio = ({userDetail, allBooks}) => {
-  console.log("userDetail: portfolio", userDetail)
+  // console.log("userDetail: portfolio", userDetail)
+  
+  for (let index = 0; index < allBooks.length; index++) {
+    console.log(allBooks[index].possesdBy)
+  }
+  
   return (
     <div className='pt-5 pb-5' style={{backgroundColor:'#f3f4f6'}}>
         <div className='row col-10 m-auto justify-content-between'>
