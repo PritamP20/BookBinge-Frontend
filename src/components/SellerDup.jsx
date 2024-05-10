@@ -12,6 +12,8 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [duration, setDuration] = useState('')
+  const [lastDate, setLastDate] = useState()
 
   const category = [
     {
@@ -50,6 +52,8 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
     },
   ];
 
+  const durations = [1,2,3,4];
+
   const [fileUpload, setFileUpload] = useState()
   const [thumbnailUpload, setThumbnailUpload] = useState()
 
@@ -71,6 +75,14 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
     e.preventDefault();
     setCate(cate)
   };
+
+  const handleDuration = (e, cate)=>{
+    e.preventDefault()
+    const today = new Date();
+    const LastDate = new Date(today.getTime()+ 7*cate*24*60*60*1000)
+    setLastDate(LastDate)
+    setDuration(cate)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,7 +125,9 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
       detail: e.target.about.value,
       ClgNotes: fileURL,
       listedBy: userDetail,
-      listedOn: DateFormat
+      listedOn: DateFormat,
+      duration: duration,
+      lastDate: lastDate
     };
 
     if (fileURL!=null) {
@@ -126,7 +140,9 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
         detail: e.target.about.value,
         ClgNotes: fileURL,
         listedBy: userDetail,
-        listedOn: DateFormat
+        listedOn: DateFormat,
+        duration: duration,
+        lastDate: lastDate
       };
     }else{
       newBooks = {
@@ -137,12 +153,15 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
         category: cate,
         detail: e.target.about.value,
         listedBy: userDetail,
-        listedOn: DateFormat
+        listedOn: DateFormat,
+        duration: duration,
+        lastDate: lastDate
       };
     }
   
     console.log(newBooks);
     addBooks(newBooks); // Add the book to your collection or database
+    alert("book listed")
   };
   
 
@@ -220,6 +239,39 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
             placeholder="Enter the title"
           />
         </div>
+
+        <div className="d-flex col-10 gap-2">
+            <label
+              htmlFor="duration"
+              className="d-flex justify-content-center align-content-center align-items-center"
+            >
+              {" "}
+              What would be you rental period (in WEEKS):{" "}
+            </label>
+            <div className="dropdown pt-lg-2 pt-md-2 pt-sm-1 pt-1">
+              <button
+                className="btn btn-secondary dropdown-toggle p-1 fs-5 ps-2 pe-2 bg-white text-black"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {duration != 0 ? `${duration} weeks` : 'Duration'}
+              </button>
+              <ul className="dropdown-menu">
+                {durations.map((cate) => (
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      onClick={(e) => handleDuration(e, cate)}
+                      href="#"
+                    >
+                      {cate} weeks
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+        </div>
         
         <div className="d-flex flex-column col-10">
           <label htmlFor="title">About the book: </label>
@@ -240,7 +292,7 @@ const SellerDub = ({userDetail, setAllBooks, allBooks, setUrl, url}) => {
               className="d-flex justify-content-center align-content-center align-items-center"
             >
               {" "}
-              enter the category of tour book:{" "}
+              enter the category of your book:{" "}
             </label>
             <div className="dropdown pt-lg-2 pt-md-2 pt-sm-1 pt-1">
               <button

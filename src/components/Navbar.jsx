@@ -4,13 +4,14 @@ import { FaSearch, FaBars, FaBriefcase, FaTrash, FaArrowRight } from 'react-icon
 import {MdLibraryBooks} from 'react-icons/md'
 import logo from '../assets/logo.png'
 import './Navbar.css'
-import { useTheme, Box } from '@mui/material';
+import { useTheme, Box, Button } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import SignUp2 from './auth/SignUp';
 import Login from './auth/Login';
+import BookComponent from './Books/BookComponent';
 
 
-const Navbar = ({userDetail}) => {
+const Navbar = ({allBooks, userDetail}) => {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false);
 
@@ -22,6 +23,21 @@ const Navbar = ({userDetail}) => {
     e.preventDefault()
     navigate('/portfolio')
   }
+
+  const token = localStorage.getItem("token")
+
+  const handleLogout = (e)=>{
+    e.preventDefault()
+    localStorage.removeItem("token")
+    alert("Loged Out")
+    navigate('/')
+  }
+
+  const handleCollection = (e)=>{
+    e.preventDefault()
+    navigate('/allbooks', {state: {"notes": allBooks, "titile":"Collection"}})
+  }
+
 
   const category = ["Romance", "Manga", "Sci-fi", "Mistry", "Biograpy", "Horror"]
 
@@ -42,7 +58,7 @@ const Navbar = ({userDetail}) => {
           <hr className='p-0 m-0'/>
         </div>
         <div className='d-flex flex-column'>
-          <a href='/allbooks' className='d-flex container justify-content-between text-decoration-none text-black align-items-center' style={{height:'70px'}}>
+          <a href='' onClick={e=>handleCollection(e)} className='d-flex container justify-content-between text-decoration-none text-black align-items-center' style={{height:'70px'}}>
             <a href="" className='text-decoration-none text-black'><span className='fs-6  d-flex align-items-center'> <MdLibraryBooks className='me-2'/> Collections</span></a>
             <span className='justify-content-end'> <FaArrowRight/> </span>
           </a>
@@ -84,11 +100,7 @@ const Navbar = ({userDetail}) => {
 
       {/* Last Div */}
       <div className="d-flex align-items-center gap-3">
-        {/* <button onClick={e=>handleLogin(e)} className="border-0 rounded-1 bg-danger text-white" style={{ fontSize: "15px", width: "5rem", height: "2rem" }}> Sign Up </button> */}
-        {/* <SignUp2/> */}
-        <Login/>
-        {/* <a href="" className="text-black fs-4 d-flex justify-content-center align-items-center"><FaBars /></a> */}
-        
+        {token ? <Button variant="outlined" className='bg-danger text-white' onClick={e=>handleLogout(e)}> Logout </Button> : <Login/>}
         <div className='col-3 fs-1 m-auto'>
           <a herf="" className='col-12 text-black' onClick={toggleDrawer(true)}><FaBars className='col-10 d-flex align-items-center'/></a>
           <Drawer  anchor='right' open={open} onClose={toggleDrawer(false)}>

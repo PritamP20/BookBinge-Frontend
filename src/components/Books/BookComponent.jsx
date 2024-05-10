@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import notFound from '../../assets/notFound.png'
 import { useNavigate } from 'react-router-dom'
 
-const BookComponent = ({allBooks, activeCate}) => {
+const BookComponent = ({allBooks, activeCate, title}) => {
     console.log(activeCate)
     let filterBook = []
     if (activeCate.length!=0) {
@@ -28,7 +28,7 @@ const BookComponent = ({allBooks, activeCate}) => {
     <div>
       <div className='m-auto '>
         <div className='d-flex justify-content-between'>
-            <h3 className='fw-semibold'>Recommended Books</h3>
+            <h3 className='fw-semibold'>{title.map(t=> <> {t} ,</>)}</h3>
             <a href="" className='text-danger justify-content-end fs-5'>See all</a>
         </div>
         

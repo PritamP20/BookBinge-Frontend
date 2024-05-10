@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Recommended = ({allBooks, title}) => {
+const PortBook = ({allBooks, title}) => {
     const navigate = useNavigate()
     const handlePreview = (e, book)=>{
         e.preventDefault()
@@ -11,22 +11,12 @@ const Recommended = ({allBooks, title}) => {
           navigate('/document', {state: {"ClgNotes": book}})
         }
     }
-
-    const handleAll = (e, title)=>{
-      e.preventDefault()
-      if (title =="Notes") {
-        navigate('/allbooks', {state: {"notes": allBooks, "titile":"Notes"}})
-      }else{
-        navigate('/allbooks', {state: {"notes": allBooks, "titile":"Collection"}})
-      }
-    }
   return (
-    <>
     <div className='mt-lg-5 mb-lg-5'>
       <div className='m-auto col-10'>
         <div className='d-flex justify-content-between'>
             <h3 className='fw-semibold'>{title}</h3>
-            <a href="" onClick={e=>handleAll(e, title)} className='text-danger justify-content-end fs-5'>See all</a>
+            <a href="" className='text-danger justify-content-end fs-5'>See all</a>
         </div>
         
         <div className="d-flex  overflow-x-scroll flex-nowrap gap-4" style={{scrollbarWidth:'none'}}>
@@ -45,8 +35,7 @@ const Recommended = ({allBooks, title}) => {
       </div>
       
     </div>
-    </>
   )
 }
 
-export default Recommended
+export default PortBook

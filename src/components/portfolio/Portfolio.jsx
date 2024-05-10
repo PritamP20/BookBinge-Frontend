@@ -98,9 +98,11 @@ import axios from 'axios';
 
 const Portfolio = ({ userDetail, allBooks }) => {
   const bookPossesd = [];
-  const bookRented = allBooks.find(
+  const bookRented = allBooks.filter(
     (book) => book.possesdBy && book.possesdBy.email === userDetail.email
   );
+
+  console.log("bookRented",bookRented)
 
   if (bookRented) {
     bookPossesd.push(bookRented);
@@ -151,14 +153,10 @@ const Portfolio = ({ userDetail, allBooks }) => {
           <h6 className='d-flex gap-3'><span className='text-danger'>NAME :</span> <span>{userDetail.name}</span></h6>
           <h6 className='d-flex gap-3'><span className='text-danger'>EMAIL :</span> <span>{userDetail.email}</span></h6>
         </div>
-        <div className='col-3 p-2 bg-white rounded-1'>
-          <h6 className='d-flex gap-3'><span className='text-danger'>NAME :</span> <span>Pritam</span></h6>
-          <h6 className='d-flex gap-3'><span className='text-danger'>EMAIL :</span> <span>pripritam7@gmail.com</span></h6>
-        </div>
       </div>
       <div>
         {bookPossesd.length > 0 && (
-          <DashBoardBooks allBooks={bookPossesd} title={'Books In Possession'} />
+          <DashBoardBooks allBooks={bookRented} title={'Books In Possession'} />
         )}
         {booksCollection.length > 0 && (
           <DashBoardBooks allBooks={booksCollection} title={'Interested Books'} />

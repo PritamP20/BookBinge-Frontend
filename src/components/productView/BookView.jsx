@@ -10,12 +10,12 @@ const BookView = ({userDetail}) => {
   const book = location.state
 
   const [error, setError] = useState()
-  const [alert, setAlert] = useState(false)
+  const [alertRent, setAlertRent] = useState(false)
   const [alertFav, setAlertFav] = useState(false)
 
   const handleRent = async (e)=>{
     e.preventDefault()
-    setAlert(true)
+    setAlertRent(true)
     const date = new Date();
     const possesdBy = userDetail;
     const updatedBook = {...book.book, "possesdBy":possesdBy, "possesdOn": {"date":date.getDate(), "month":date.getMonth(), "yera":date.getFullYear()}}
@@ -25,7 +25,7 @@ const BookView = ({userDetail}) => {
       setError(true)
     }
     setTimeout(()=>[
-      setAlert(false)
+      setAlertRent(false)
     ],2000)
   }
 
@@ -41,6 +41,7 @@ const BookView = ({userDetail}) => {
       console.log("posting")
       const data = {"email":userDetail.email, "collection":[book.book.id]};
       const interestBook = await axios.post("https://bookbinge-backend.onrender.com/collection",data) 
+      
     }else{
       console.log("putting")
       const id = bookTest[0]._id
@@ -51,14 +52,8 @@ const BookView = ({userDetail}) => {
         const data = {"email":userDetail.email, "collection":bookTest[0].collection}
         const updatating = await axios.put(`https://bookbinge-backend.onrender.com/collection/${id}`, data)
       }
-
     }
-    
-    try {
-      
-    } catch (error) {
-      
-    }
+    alert("Book Added to your collection")
   }
 
   return (
@@ -87,7 +82,7 @@ const BookView = ({userDetail}) => {
           <div className='d-flex'>
             <button type="button" onClick={e=>handleRent(e)} className="btn d-flex m-auto btn-outline-danger">Rent It</button> / <button type="button" onClick={e=> handleCollections(e)} className="btn d-flex m-auto btn-outline-danger">Add to Favorites</button> 
           </div>
-          { alert ?
+          { alertRent ?
             <Stack sx={{ width: '100%' }} spacing={2}>
             {error ?
             <Alert className='d-flex m-auto' severity="error">This is an error Alert.</Alert>

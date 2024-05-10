@@ -30,6 +30,8 @@ import Portfolio from './components/portfolio/Portfolio';
 import { jwtDecode } from 'jwt-decode';
 import Login from './components/auth/Login';
 import BookView from './components/productView/BookView';
+import PortBook from './components/portfolio/PortBook';
+import InCarosal from './components/InCarosal';
 
 function App() {
   const token = localStorage.getItem("token")
@@ -87,11 +89,17 @@ function App() {
     )
   }
 
+  const slides = [
+    { src: 'https://via.placeholder.com/800x400?text=Slide+1', alt: 'Slide 1' },
+    { src: 'https://via.placeholder.com/800x400?text=Slide+2', alt: 'Slide 2' },
+    { src: 'https://via.placeholder.com/800x400?text=Slide+3', alt: 'Slide 3' },
+  ];
+
 
   return (
     <div className='' style={{backgroundColor: 'white'}}>
       <Router>
-      <Navbar userDetail={userDetail}></Navbar>
+      <Navbar allBooks={allBooks} userDetail={userDetail}></Navbar>
       <CateNav/>
       <Routes>
         <Route path='/' element={<Dashboard/>}/>
@@ -101,7 +109,10 @@ function App() {
         <Route path='/allbooks' element={<Allbooks allBooks={allBooks}/>}/>
         <Route path='/book' element={<Product allBooks={allBooks}/>} allBooks={allBooks}/>
         <Route path='/bookView' element={<BookView userDetail={userDetail}/>} allBooks={allBooks}/>
+        
+        <Route path='/carosal' element={<InCarosal/>}/>
 
+        <Route path='/portbook' element={<PortBook allBooks={allBooks} title={"Your books"}/>}/>
         <Route path='/portfolio' element={<Portfolio userDetail = {userDetail} allBooks={allBooks}/>}/>
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/login' element={<Login />} />

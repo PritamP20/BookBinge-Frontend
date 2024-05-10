@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import BookComponent from './BookComponent';
+import InCarosal from '../InCarosal';
 
 const Product = ({ allBooks }) => {
   const location = useLocation();
@@ -12,7 +13,7 @@ const Product = ({ allBooks }) => {
   const handleClick = (e, cate) => {
     e.preventDefault();
 
-    if (activeCate.includes(cate)) {
+    if (activeCate.includes(cate)  ) {
       setActiveCate(activeCate.filter(item => item !== cate)); // Removes cate if it exists
     } else {
       setActiveCate([...activeCate, cate]); // Adds cate if it doesn't exist
@@ -20,6 +21,8 @@ const Product = ({ allBooks }) => {
   };
 
   return (
+    <>
+    <InCarosal></InCarosal>
     <div className='mt-5' style={{ backgroundColor: '#f3f4f6' }}>
       <div className='d-flex m-auto justify-content-between col-10'>
         <div style={{ flexBasis: '23%' }}>
@@ -48,10 +51,11 @@ const Product = ({ allBooks }) => {
         </div>
 
         <div className='col-9'>
-          <BookComponent allBooks={allBooks} activeCate={activeCate} />
+          <BookComponent allBooks={allBooks} activeCate={activeCate} title={activeCate} />
         </div>
       </div>
     </div>
+    </>
   );
 };
 
